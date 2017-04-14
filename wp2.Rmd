@@ -1,0 +1,64 @@
+---
+title: "Using R as a GIS"
+author: "Kiefer"
+date: "April 14, 2017"
+output: html_document
+---
+
+In real estate, spatial data is the name of the game.  Countless apps utilize the power of this data, which becoming more prevalent by the day thanks to smartphones and location services.
+
+How can we do this in R?  In this post I will go over a few simple, but powerful tools to get you started.
+
+```{r setup, echo=TRUE}
+##First, some libraries##
+#install.packages('GISTools', dependencies = T)
+library(GISTools)
+```
+`GISTools` provides an easy-to-use method for creating shading schemes and choropleth maps.  Some of you may have heard of the `sp` package, which adds numerous spatial classes to the mix.
+
+````{r, echo = TRUE}
+data("vulgaris")
+plot(us_states)
+plot(vulgaris, add = T)
+
+````
+
+
+there are also functions for analysis and making things pretty.
+
+
+
+
+And the output:
+````{r, echo = TRUE}
+df
+````
+
+This is an awesome way to organize data and one of R's strong points.  However, we can use list functionality to go deeper.  Check this out:
+````{r, message = FALSE}
+library(tidyverse)
+library(datasets)
+````{r}
+head(iris)
+
+nested <- iris %>%
+  group_by(Species) %>%
+  nest()
+````
+````{r, echo = FALSE}
+nested
+````
+Using `nest` we can compartmentalize our data frame for readability and more efficient iteration.  Here we can use `map` from the `purrr` package to compute the mean of each column in our nested data.
+
+````{r}
+means <- map(nested$data, colMeans)
+````
+````{r, echo = FALSE}
+means
+````
+Once you're done messing around with data-ception, use `unnest` to revert your data back to its original state.
+````{r}
+head(unnest(nested))
+````
+
+
