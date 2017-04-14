@@ -48,10 +48,3 @@ head(unnest(nested))
 ````
 
 I was pretty excited to learn about this property of data.frames and will definitely make use of it in the future.  If you have any neat ideas how this might be used, please feel free to share in the comments.
-
-
-
-
-model <- function(df) {
-    lm(data = df, Sepal.Length ~ Sepal.Width)
-}
