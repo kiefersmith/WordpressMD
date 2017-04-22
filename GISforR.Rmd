@@ -2,9 +2,7 @@
 title: "Using R as a GIS"
 author: "Kiefer"
 date: "April 21, 2017"
-output:
-  md_document:
-      variant: markdown_phpextra+backtick_code_blocks
+output: md_document
 ---
 
 In real estate, spatial data is the name of the game.  Countless programs in other domains utilize the power of this data, which is becoming more prevalent by the day.
